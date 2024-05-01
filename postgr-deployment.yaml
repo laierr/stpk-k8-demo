@@ -7,18 +7,18 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      components: backend
+      components: postgress
   template:
     metadata:
       labels:
-        components: backend
+        components: postgress
     spec:
       containers:
-        - name: short-postgr
+        - name: postgress
           image: postgres:16
           ports:
-            - containerPort: 80
+            - containerPort: 5432
           resources:
             limits:
-              memory: "128Mi"
+              memory: "512Mi"
               cpu: "500m"
