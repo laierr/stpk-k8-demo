@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: postgress-service
+  name: postgres-ClusterIP
   namespace: stpk-short
 spec:
   selector:
-    components: postgress
+    components: postgres
   type:  ClusterIP
   ports:
-  - name:  postgress-port
+  - name:  postgres-port
     port:  5432
     targetPort: 5432
