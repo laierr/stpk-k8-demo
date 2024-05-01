@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  short-app-clusterip
+  name: short-app-clusterip
   namespace: stpk-short
 spec:
   selector:
