@@ -13,18 +13,18 @@ spec:
       labels:
         components: api
     spec:
-      env:
-      - name: DATABASE_URL
-        valueFrom:
-          secretKeyRef:
-            name: short-api-secret
-            key: DATABASE_URL
       containers:
         - name: short-api
           image: antonlarichev/short-api:v1.0
+          env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: short-api-secret
+                key: DATABASE_URL
           ports:
             - containerPort: 3000
           resources:
             limits:
-              memory: "128Mi"
+              memory: "512Mi"
               cpu: "500m"
