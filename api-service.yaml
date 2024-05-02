@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: short-api-clusterip
+  namespace: stpk-short
+spec:
+  selector:
+    components: api
+  type:  ClusterIP
+  ports:
+  - name:  cluster-port-api
+    port:  3000
+    protocol: TCP
