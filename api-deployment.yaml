@@ -26,6 +26,15 @@ spec:
             - name: test
               mountPath: "/etc/test"
               readOnly: true
+          livenessProbe:
+            exec: 
+              command:
+                - curl
+                - --fail
+                - http://localhost:3000/api
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            failureThreshold: 1
           ports:
             - containerPort: 3000
           resources:
