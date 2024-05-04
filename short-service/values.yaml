@@ -1,1 +1,14 @@
-name: Kaiman
+namespace: stpk-short #default namespace for that course deployment
+
+# APP VALUES
+app: 
+  name: short-app
+  replicaCount: 1
+  components: frontend
+  image: 
+    name: antonlarichev/short-app
+    version: v1.4
+  port: 80
+  limits:
+    memory: "128Mi"
+    cpu: "500m"

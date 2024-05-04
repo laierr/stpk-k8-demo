@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: short-app-clusterip
-  namespace: stpk-short
+  name:  {{ .Values.app.name}}-clusterip
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
-    components: frontend
+    components: {{ .Values.app.components }}
   type:  ClusterIP
   ports:
   - name:  cluster-port
-    port:  80
+    port:  {{ .Values.app.port }}
     protocol: TCP

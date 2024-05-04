@@ -1,24 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: short-app-deployment
-  namespace: stpk-short
+  name: {{ .Values.app.name}}-deployment
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.app.replicaCount }}
   selector:
     matchLabels:
-      components: frontend
+      components: {{ .Values.app.components }}
   template:
     metadata:
       labels:
-        components: frontend
+        components: {{ .Values.app.components }}
     spec:
       containers:
-        - name: short-app
-          image: antonlarichev/short-app:v1.4
+        - name: {{ .Values.app.name }}
+          image: "{{ .Values.app.image.name }}:{{ .Values.app.image.version }}"
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.app.port }}
           resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
+          limits: {{ .Values.app.limits | toYaml | nindent 12 }}
