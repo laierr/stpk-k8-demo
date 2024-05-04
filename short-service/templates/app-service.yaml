@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: short-app-clusterip
+  namespace: stpk-short
+spec:
+  selector:
+    components: frontend
+  type:  ClusterIP
+  ports:
+  - name:  cluster-port
+    port:  80
+    protocol: TCP
