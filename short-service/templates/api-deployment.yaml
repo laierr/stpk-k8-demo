@@ -17,15 +17,15 @@ spec:
         - name: {{ .Values.api.name }}
           image: "{{ .Values.api.image.name }}:{{ .Values.api.image.version }}"
           env:
-          - name: {{ .Values.api.env }}
-            valueFrom:
-              secretKeyRef:
-                name: {{.Values.api.name}}-secret
-                key: {{ .Values.api.env }}
-          # volumeMounts:
-          #   - name: {{ .Values.api.volumes.name }}
-          #     mountPath: {{ .Values.api.volumes.mountPath }}
-          #     readOnly: true
+            {{- range .Values.api.envs }}
+            {{- $data := dict "name" $.Values.api.name "env" . }}
+            {{- include "env.template" $data | indent 12 }}
+            {{- end }}
+          # - name: {{ .Values.api.env }}
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: {{.Values.api.name}}-secret
+          #       key: {{ .Values.api.env }}
           livenessProbe:
             exec: 
               command:
@@ -40,7 +40,3 @@ spec:
           resources:
             limits: 
             {{- toYaml .Values.api.limits | nindent 14}}
-      # volumes: 
-      #   - name: test
-      #     configMap:
-      #       name: demo-config
