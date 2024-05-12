@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.api.name}}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.api.replicaCount }}
+  selector:
+    matchLabels:
+      components: {{ .Values.api.components }}
+  template:
+    metadata:
+      labels:
+        components: {{ .Values.api.components }}
+    spec:
+      containers:
+        - name: {{ .Values.api.name }}
+          image: "{{ .Values.api.image.name }}:{{ .Values.api.image.version }}"
+          env:
+          - name: {{ .Values.api.env }}
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.api.name}}-secret
+                key: {{ .Values.api.env }}
+          # volumeMounts:
+          #   - name: {{ .Values.api.volumes.name }}
+          #     mountPath: {{ .Values.api.volumes.mountPath }}
+          #     readOnly: true
+          livenessProbe:
+            exec: 
+              command:
+                - curl
+                - --fail
+                - http://localhost:{{ .Values.api.port }}/api
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            failureThreshold: 1
+          ports:
+            - containerPort: {{ .Values.api.port }}
+          resources:
+            limits: 
+            {{- toYaml .Values.api.limits | nindent 14}}
+      # volumes: 
+      #   - name: test
+      #     configMap:
+      #       name: demo-config

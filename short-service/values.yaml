@@ -1,4 +1,5 @@
 namespace: stpk-short #default namespace for that course deployment
+env: production
 
 # APP VALUES
 app: 
@@ -12,3 +13,35 @@ app:
   limits:
     memory: "128Mi"
     cpu: "500m"
+
+# API VALUES
+api:
+  name: short-api
+  replicaCount: 1
+  components: api
+  image: 
+    name: antonlarichev/short-api
+    version: v1.0
+  volumes:
+    name: test
+    mountPath: "/etc/test"
+  port: 3000
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+  env: DATABASE_URL
+
+#POSTGRES VALUES
+postgres: 
+  name: postgres
+  component: api
+  image:
+    name: antonlarichev/short-api
+    version: v1.0
+  port: 5432
+
+db:
+  user: demo
+  password: demo
+  db: demo
+  host: postgres-clusterip
