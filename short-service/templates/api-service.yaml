@@ -8,6 +8,6 @@ spec:
     components: {{ .Values.api.component }}
   type:  ClusterIP
   ports:
-  - name:   {{ .Values.api.name }}-cluster-port
-    port:  {{ .Values.api.port }}
+  - name: {{ .Values.api.name }}-cluster-port
+    port: {{ .Values.api.port }}
     protocol: TCP

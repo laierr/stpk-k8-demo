@@ -22,9 +22,6 @@ api:
   image: 
     name: antonlarichev/short-api
     version: v1.0
-  volumes:
-    name: test
-    mountPath: "/etc/test"
   port: 3000
   limits:
     memory: "128Mi"
@@ -35,14 +32,20 @@ api:
 #POSTGRES VALUES
 postgres: 
   name: postgres
-  component: api
+  component: postgres
   image:
-    name: antonlarichev/short-api
-    version: v1.0
+    name: postgres
+    version: 16.0
   port: 5432
-
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  volumes:
+  envs:
+  - POSTGRES_DB
+  - POSTGRES_USER
+  - POSTGRES_PASSWORD
 db:
   user: demo
   password: demo
   db: demo
-  host: postgres-clusterip
