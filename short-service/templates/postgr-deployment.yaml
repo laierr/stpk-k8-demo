@@ -18,7 +18,7 @@ spec:
           image: "{{ .Values.postgres.image.name }}:{{ .Values.postgres.image.version }}"
           ports:
             - containerPort: {{.Values.postgres.port }}
-          env:
+          env: #ENV TEMPLATE
             {{- range .Values.postgres.envs }}
             {{- $data := dict "name" $.Values.postgres.name "env" . }}
             {{- include "env.template" $data | indent 12 }}

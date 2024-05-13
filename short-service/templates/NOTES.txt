@@ -1,0 +1,22 @@
+You have installed {{ .Release.Name }} {{ .Chart.Version }}
+
+Core Values:
+    Namespace: {{ .Values.namespace }}
+
+FRONTEND:
+    Pod Prefix: {{.Values.app.name}} 
+    Port: {{.Values.app.port}}, 
+    Limits: Mem: {{ .Values.app.limits.memory }} CPU: {{ .Values.app.limits.cpu }}
+    Replicas: {{ .Values.app.replicaCount }}
+    Image: "{{ .Values.app.image.name }}" Version: "{{ .Values.app.image.version }}"
+API:
+    Pod Prefix: {{.Values.api.name}} 
+    Port: {{.Values.api.port}}
+    Limits: Mem: {{ .Values.api.limits.memory }} CPU: {{ .Values.api.limits.cpu }} 
+    Replicas: {{ .Values.api.replicaCount }}
+    Image: "{{ .Values.api.image.name }}" Version: "{{ .Values.api.image.version }}"
+POSTGRES:
+    Pod Prefix: "{{.Values.postgres.name}}" 
+    Port: {{.Values.postgres.port}} 
+    Limits: Mem: {{ .Values.postgres.limits.memory }} CPU: {{ .Values.postgres.limits.cpu }}
+    Image: "{{ .Values.postgres.image.name }}" Version: "{{ .Values.postgres.image.version }}"

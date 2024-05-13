@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    components: {{ .Values.api.component }}
+    components: {{ .Values.api.components }}
   type:  ClusterIP
   ports:
   - name: {{ .Values.api.name }}-cluster-port

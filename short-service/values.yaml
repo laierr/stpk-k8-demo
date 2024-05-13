@@ -24,7 +24,7 @@ api:
     version: v1.0
   port: 3000
   limits:
-    memory: "128Mi"
+    memory: "512Mi"
     cpu: "500m"
   envs: 
   - DATABASE_URL
@@ -40,7 +40,6 @@ postgres:
   limits:
     memory: "512Mi"
     cpu: "500m"
-  volumes:
   envs:
   - POSTGRES_DB
   - POSTGRES_USER

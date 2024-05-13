@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{.Values.postgres.name }}-clusterip
-namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     components: {{.Values.postgres.component }}
