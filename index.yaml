@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  short-service:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-05-13T22:01:33.1964087+03:00"
+    description: URL Shortener Service
+    digest: 31a2d60434c69e54d8492560121f1f0a4598506a1caca2d0ef18fc325bf100b6
+    name: short-service
+    type: application
+    urls:
+    - short-service-0.1.1.tgz
+    version: 0.1.1
+generated: "2024-05-13T22:01:33.1958808+03:00"
