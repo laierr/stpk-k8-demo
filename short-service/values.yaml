@@ -44,7 +44,3 @@ postgres:
   - POSTGRES_DB
   - POSTGRES_USER
   - POSTGRES_PASSWORD
-db:
-  user: demo
-  password: demo
-  db: demo
